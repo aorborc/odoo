@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName ops.aorborc.com
+    ServerAlias ops.aorborc.com // Use this if you want dbfillter on subdomain
+    ErrorLog /var/log/openerp/openerp-error.log
+    CustomLog /var/log/openerp/openerp-access.log combined
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+    ProxyRequests Off
+    ProxyPass / http://198.12.154.107:8069/
+    ProxyPassReverse / http://198.12.154.107:8069/
+    ProxyVia On
+    LogLevel warn
+</VirtualHost>
